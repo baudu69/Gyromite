@@ -1,4 +1,5 @@
 package deplacements;
 
-public class IA {
+public class IA extends RealisateurDeDeplacement{
+    protected boolean realiserDeplacement() { return false; } // TODO
 }
