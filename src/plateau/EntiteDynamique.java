@@ -1,9 +1,11 @@
 package plateau;
 
 import deplacements.Direction;
+import deplacements.IA;
 
 public abstract class EntiteDynamique extends Entite{
     public EntiteDynamique(Jeu _jeu) { super(_jeu); }
+
 
     public boolean avancerDirectionChoisie(Direction d) {
         return jeu.deplacerEntite(this, d);
