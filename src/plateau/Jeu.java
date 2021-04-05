@@ -18,8 +18,11 @@ public class Jeu {
 
     private Heros hector;
 
+    public Gravite g;
+
     private final HashMap<Entite, Point> map = new  HashMap<Entite, Point>(); // permet de récupérer la position d'une entité à partir de sa référence
     private final Entite[][] grilleEntites = new Entite[SIZE_X][SIZE_Y]; // permet de récupérer une entité à partir de ses coordonnées
+    private final Entite[][] grilleEntitesDynamique = new Entite[SIZE_X][SIZE_Y]; // permet de récupérer une entité à partir de ses coordonnées
 
     private final Ordonnanceur ordonnanceur = new Ordonnanceur(this);
 
@@ -40,15 +43,21 @@ public class Jeu {
         return grilleEntites;
     }
 
+    public Entite[][] getGrilleEntitesDynamique() {
+        return grilleEntitesDynamique;
+    }
+
     public Heros getHector() {
         return hector;
     }
 
     private void initialisationDesEntites() {
         hector = new Heros(this);
-        addEntite(hector, 2, 1);
+        hector.x=5;
+        hector.y=9;
+        addEntite(hector, 5, 9);
 
-        Gravite g = new Gravite();
+        g = new Gravite();
         g.addEntiteDynamique(hector);
         ordonnanceur.add(g);
 
@@ -69,16 +78,21 @@ public class Jeu {
 
         addEntite(new Mur(this), 2, 6);
         addEntite(new Mur(this), 3, 6);
-        addEntite(new Bot(this), 10, 6);
+        addEntiteDynamique(new Bot(this), 10, 6);
 
         for (int i = SIZE_Y - 1; i >8; i--) {
-            addEntite(new Colonne(this), 5, i);
+            addEntiteDynamique(new Corde(this), 5, i);
         }
 
     }
 
     private void addEntite(Entite e, int x, int y) {
         grilleEntites[x][y] = e;
+        map.put(e, new Point(x, y));
+    }
+
+    private void addEntiteDynamique(Entite e, int x, int y) {
+        grilleEntitesDynamique[x][y] = e;
         map.put(e, new Point(x, y));
     }
 
@@ -147,6 +161,12 @@ public class Jeu {
         map.put(e, pCible);
     }
 
+    private void deplacerEntiteDynamique(Point pCourant, Point pCible, Entite e) {
+        grilleEntitesDynamique[pCourant.x][pCourant.y] = null;
+        grilleEntitesDynamique[pCible.x][pCible.y] = e;
+        map.put(e, pCible);
+    }
+
     /** Indique si p est contenu dans la grille
      */
     private boolean contenuDansGrille(Point p) {
@@ -158,6 +178,16 @@ public class Jeu {
 
         if (contenuDansGrille(p)) {
             retour = grilleEntites[p.x][p.y];
+        }
+
+        return retour;
+    }
+
+    private Entite objetDynamiqueALaPosition(Point p) {
+        Entite retour = null;
+
+        if (contenuDansGrille(p)) {
+            retour = grilleEntitesDynamique[p.x][p.y];
         }
 
         return retour;

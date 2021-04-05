@@ -1,7 +1,10 @@
 package plateau;
 
 public abstract class Entite {
-    protected Jeu jeu;
+    public Jeu jeu;
+
+    public int x;
+    public int y;
 
     public Entite(Jeu _jeu) {
         jeu = _jeu;

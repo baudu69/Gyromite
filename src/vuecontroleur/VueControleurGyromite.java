@@ -99,6 +99,18 @@ public class VueControleurGyromite extends JFrame implements Observer {
         add(grilleJLabels);
     }
 
+    private void majCoordEntite(int x, int y) {
+        if (jeu.getGrilleEntitesDynamique()[x][y] != null) {
+            jeu.getGrilleEntitesDynamique()[x][y].x = x;
+            jeu.getGrilleEntitesDynamique()[x][y].y = y;
+        }
+        if (jeu.getGrille()[x][y] != null) {
+            jeu.getGrille()[x][y].x = x;
+            jeu.getGrille()[x][y].y = y;
+        }
+
+    }
+
 
     /**
      * Il y a une grille du côté du modèle ( jeu.getGrille() ) et une grille du côté de la vue (tabJLabel)
@@ -107,23 +119,64 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
         for (int x = 0; x < sizeX; x++) {
             for (int y = 0; y < sizeY; y++) {
-                if (jeu.getGrille()[x][y] instanceof Heros) { // si la grille du modèle contient un Pacman, on associe l'icône Pacman du côté de la vue
-                    // System.out.println("Héros !");
-                    tabJLabel[x][y].setIcon(icoHero);
-                } else if (jeu.getGrille()[x][y] instanceof Mur) {
-                    tabJLabel[x][y].setIcon(icoMur);
-                } else if (jeu.getGrille()[x][y] instanceof Colonne) {
-                    tabJLabel[x][y].setIcon(icoColonne);
-                } else if (jeu.getGrille()[x][y] instanceof Corde) {
-                    tabJLabel[x][y].setIcon(icoCorde);
+                majCoordEntite(x, y);
+                if (jeu.getGrilleEntitesDynamique()[x][y] == null) {
+                    if (jeu.getGrille()[x][y] instanceof Heros) { // si la grille du modèle contient un Pacman, on associe l'icône Pacman du côté de la vue
+                        // System.out.println("Héros !");
+                        tabJLabel[x][y].setIcon(icoHero);
+                    } else if (jeu.getGrille()[x][y] instanceof Mur) {
+                        tabJLabel[x][y].setIcon(icoMur);
+                    } else if (jeu.getGrille()[x][y] instanceof Colonne) {
+                        tabJLabel[x][y].setIcon(icoColonne);
+                    } else {
+                        tabJLabel[x][y].setIcon(icoVide);
+                    }
+                } else {
+                    ImageIcon IconeDyn = null;
+                    if (jeu.getGrilleEntitesDynamique()[x][y] instanceof Corde) {
+                        IconeDyn = icoCorde;
+                    }
+                    if (jeu.getGrille()[x][y] instanceof Heros) { // si la grille du modèle contient un Pacman, on associe l'icône Pacman du côté de la vue
+                        // System.out.println("Héros !");
+                        tabJLabel[x][y].setIcon(new ImageIcon( fusion2Images(icoHero.getImage(), IconeDyn.getImage())));
+                    }
+                    else if (jeu.getGrille()[x][y] instanceof Mur) {
+                        tabJLabel[x][y].setIcon(new ImageIcon( fusion2Images(icoMur.getImage(), IconeDyn.getImage())));
+                    }
+                    else if (jeu.getGrille()[x][y] == null) {
+                        tabJLabel[x][y].setIcon(IconeDyn);
+                    }else {
+                        tabJLabel[x][y].setIcon(icoVide);
+                    }
                 }
-                else if (jeu.getGrille()[x][y] instanceof Bot) {
-                    tabJLabel[x][y].setIcon(icoCorde);
-                }else {
-                    tabJLabel[x][y].setIcon(icoVide);
-                }
+
             }
         }
+    }
+
+    /**
+     * @param img1 Image 1
+     * @param img2 Image 2
+     * @return Fusion entre les deux images
+     */
+    public static Image fusion2Images(Image img1, Image img2) {
+        BufferedImage buf = null;
+        if(img1 != null && img2 != null) {
+            int w1 = img1.getWidth(null);
+            int h1 = img1.getHeight(null);
+            int w2 = img2.getWidth(null);
+            int h2 = img2.getHeight(null);
+            int hMax = 0;
+            int wMax = 0;
+
+            hMax = Math.max(h1, h2);
+            wMax = w1+w2;
+            buf = new BufferedImage(wMax, hMax, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2 = buf.createGraphics();
+            g2.drawImage(img1, 0, 0, null);
+            g2.drawImage(img2, w1, 0, null);
+        }
+        return buf;
     }
 
     @Override

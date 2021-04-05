@@ -5,6 +5,8 @@ public class Heros extends EntiteDynamique{
         super(_jeu);
     }
 
+    public boolean laGravite= true;
+
     public boolean peutEtreEcrase() { return true; }
     public boolean peutServirDeSupport() { return true; }
     public boolean peutPermettreDeMonterDescendre() { return false; };
