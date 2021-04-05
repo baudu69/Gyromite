@@ -29,6 +29,10 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private ImageIcon icoMur;
     private ImageIcon icoColonne;
     private ImageIcon icoCorde;
+    private ImageIcon icoPoutre;
+    private ImageIcon icoMonstre;
+    private ImageIcon icoSol;
+
 
     private JLabel[][] tabJLabel; // cases graphique (au moment du rafraichissement, chaque case va être associée à une icône, suivant ce qui est présent dans le modèle)
 
@@ -60,11 +64,15 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
 
     private void chargerLesIcones() {
-        icoHero = chargerIcone("Images/Pacman.png");
+        icoHero = chargerIcone("Images/Player.png");
         icoVide = chargerIcone("Images/Vide.png");
         icoColonne = chargerIcone("Images/Colonne.png");
-        icoMur = chargerIcone("Images/Mur.png");
-        icoCorde = chargerIcone("Images/Fantome.png");
+        icoMur = chargerIcone("Images/PoutreV.png");
+        icoPoutre = chargerIcone("Images/PoutreH.png");
+        icoCorde = chargerIcone("Images/Corde.png");
+        icoMonstre = chargerIcone("Images/Corde.png");
+        icoSol = chargerIcone("Images/Sol.png");
+
     }
 
     private ImageIcon chargerIcone(String urlIcone) {
@@ -119,64 +127,29 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
         for (int x = 0; x < sizeX; x++) {
             for (int y = 0; y < sizeY; y++) {
-                majCoordEntite(x, y);
-                if (jeu.getGrilleEntitesDynamique()[x][y] == null) {
-                    if (jeu.getGrille()[x][y] instanceof Heros) { // si la grille du modèle contient un Pacman, on associe l'icône Pacman du côté de la vue
-                        // System.out.println("Héros !");
-                        tabJLabel[x][y].setIcon(icoHero);
-                    } else if (jeu.getGrille()[x][y] instanceof Mur) {
-                        tabJLabel[x][y].setIcon(icoMur);
-                    } else if (jeu.getGrille()[x][y] instanceof Colonne) {
-                        tabJLabel[x][y].setIcon(icoColonne);
-                    } else {
-                        tabJLabel[x][y].setIcon(icoVide);
-                    }
-                } else {
-                    ImageIcon IconeDyn = null;
-                    if (jeu.getGrilleEntitesDynamique()[x][y] instanceof Corde) {
-                        IconeDyn = icoCorde;
-                    }
-                    if (jeu.getGrille()[x][y] instanceof Heros) { // si la grille du modèle contient un Pacman, on associe l'icône Pacman du côté de la vue
-                        // System.out.println("Héros !");
-                        tabJLabel[x][y].setIcon(new ImageIcon( fusion2Images(icoHero.getImage(), IconeDyn.getImage())));
-                    }
-                    else if (jeu.getGrille()[x][y] instanceof Mur) {
-                        tabJLabel[x][y].setIcon(new ImageIcon( fusion2Images(icoMur.getImage(), IconeDyn.getImage())));
-                    }
-                    else if (jeu.getGrille()[x][y] == null) {
-                        tabJLabel[x][y].setIcon(IconeDyn);
-                    }else {
-                        tabJLabel[x][y].setIcon(icoVide);
-                    }
+                if (jeu.getGrille()[x][y] instanceof Heros) { // si la grille du modèle contient un Pacman, on associe l'icône Pacman du côté de la vue
+                    // System.out.println("Héros !");
+                    tabJLabel[x][y].setIcon(icoHero);
+                } else if (jeu.getGrille()[x][y] instanceof Mur) {
+                    tabJLabel[x][y].setIcon(icoMur);
+                } else if (jeu.getGrille()[x][y] instanceof Colonne) {
+                    tabJLabel[x][y].setIcon(icoColonne);
+                } else if (jeu.getGrille()[x][y] instanceof Corde) {
+                    tabJLabel[x][y].setIcon(icoCorde);
                 }
-
+                else if (jeu.getGrille()[x][y] instanceof Poutre) {
+                    tabJLabel[x][y].setIcon(icoPoutre);
+                }
+                else if (jeu.getGrille()[x][y] instanceof Sol) {
+                    tabJLabel[x][y].setIcon(icoSol);
+                }
+                else if (jeu.getGrille()[x][y] instanceof Bot) {
+                    tabJLabel[x][y].setIcon(icoMonstre);
+                }else {
+                    tabJLabel[x][y].setIcon(icoVide);
+                }
             }
         }
-    }
-
-    /**
-     * @param img1 Image 1
-     * @param img2 Image 2
-     * @return Fusion entre les deux images
-     */
-    public static Image fusion2Images(Image img1, Image img2) {
-        BufferedImage buf = null;
-        if(img1 != null && img2 != null) {
-            int w1 = img1.getWidth(null);
-            int h1 = img1.getHeight(null);
-            int w2 = img2.getWidth(null);
-            int h2 = img2.getHeight(null);
-            int hMax = 0;
-            int wMax = 0;
-
-            hMax = Math.max(h1, h2);
-            wMax = w1+w2;
-            buf = new BufferedImage(wMax, hMax, BufferedImage.TYPE_INT_ARGB);
-            Graphics2D g2 = buf.createGraphics();
-            g2.drawImage(img1, 0, 0, null);
-            g2.drawImage(img2, w1, 0, null);
-        }
-        return buf;
     }
 
     @Override
