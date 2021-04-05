@@ -9,8 +9,8 @@ import java.awt.*;
 import java.util.HashMap;
 
 public class Jeu {
-    public static final int SIZE_X = 30;
-    public static final int SIZE_Y = 30;
+    public static final int SIZE_X = 32;
+    public static final int SIZE_Y = 32;
 
     // compteur de déplacements horizontal et vertical (1 max par défaut, à chaque pas de temps)
     private final HashMap<Entite, Integer> cmptDeplH = new HashMap<Entite, Integer>();
@@ -55,18 +55,133 @@ public class Jeu {
         Controle4Directions.getInstance().addEntiteDynamique(hector);
         ordonnanceur.add(Controle4Directions.getInstance());
 
-        // murs extérieurs horizontaux
+
+        // Sol
         for (int x = 0; x < SIZE_X; x++) {
-            addEntite(new Mur(this), x, 0);
-            addEntite(new Mur(this), x, SIZE_Y-1);
+            addEntite(new Sol(this), x, SIZE_Y-2);
+            addEntite(new Sol(this), x, SIZE_Y-1);
         }
 
-        // murs extérieurs verticaux
-        for (int y = 1; y < SIZE_Y-1; y++) {
+        // Murs extérieurs
+        for (int y = 0; y < SIZE_Y-2; y++) {
             addEntite(new Mur(this), 0, y);
             addEntite(new Mur(this), SIZE_X-1, y);
         }
 
+        // Plafond
+        for (int x = 1; x < SIZE_X-1; x++) {
+            addEntite(new Poutre(this), x,0);
+        }
+
+        // Murs interieurs
+        for (int y = 19; y < 21; y++) {
+            addEntite(new Mur(this), 29, y);
+        }
+        for (int y = 8; y < 11; y++) {
+            addEntite(new Mur(this), 20, y);
+            addEntite(new Mur(this), 25, y);
+            addEntite(new Mur(this), 20, y+19);
+        }
+        for (int y = 1; y < 5; y++) {
+            addEntite(new Mur(this), 11, y);
+            addEntite(new Mur(this), 23, y);
+            addEntite(new Mur(this), 19, y+3);
+        }
+        for (int y = 20; y < 25; y++) {
+            addEntite(new Mur(this), 16, y);
+        }
+        for (int y = 5; y < 11; y++) {
+            addEntite(new Mur(this), 4, y);
+        }
+        for (int y = 4; y < 16; y++) {
+            addEntite(new Mur(this), 27, y);
+        }
+
+        // Poutres
+        addEntite(new Poutre(this), 6,4);
+        addEntite(new Poutre(this), 17,4);
+        addEntite(new Poutre(this), 12,7);
+        addEntite(new Poutre(this), 8,10);
+        addEntite(new Poutre(this), 12,16);
+        addEntite(new Poutre(this), 30,16);
+        addEntite(new Poutre(this), 30,20);
+
+        for (int x = 9; x < 11; x++) {
+            addEntite(new Poutre(this), x,4);
+            addEntite(new Poutre(this), x+15,4);
+            addEntite(new Poutre(this), x+10,7);
+            addEntite(new Poutre(this), x+13,7);
+            addEntite(new Poutre(this), x+16,7);
+            addEntite(new Poutre(this), x-4,10);
+            addEntite(new Poutre(this), x+15,16);
+            addEntite(new Poutre(this), x+18,16);
+        }
+        for (int x = 2; x<5; x++) {
+            addEntite(new Poutre(this), x,4);
+            addEntite(new Poutre(this), x+18,4);
+            addEntite(new Poutre(this), x+13,7);
+            addEntite(new Poutre(this), x-1,14);
+            addEntite(new Poutre(this), x+3,14);
+            addEntite(new Poutre(this), x+7,14);
+            addEntite(new Poutre(this), x+6,19);
+            addEntite(new Poutre(this), x+19,27);
+        }
+        for (int x = 12; x < 16; x++) {
+            addEntite(new Poutre(this), x,4);
+            addEntite(new Poutre(this), x+9,10);
+        }
+        for (int x = 6; x < 11; x++) {
+            addEntite(new Poutre(this), x,7);
+            addEntite(new Poutre(this), x+18,19);
+            addEntite(new Poutre(this), x-5,25);
+            addEntite(new Poutre(this), x+1,27);
+            addEntite(new Poutre(this), x+8,27);
+            addEntite(new Poutre(this), x+19,27);
+        }
+        for (int x = 17; x < 23; x++) {
+            addEntite(new Poutre(this), x,16);
+            addEntite(new Poutre(this), x-7,24);
+        }
+        for (int x = 10; x < 18; x++) {
+            addEntite(new Poutre(this), x,10);
+        }
+        for (int x = 20; x < 31; x++) {
+            addEntite(new Poutre(this), x,23);
+        }
+        for (int x = 11; x <23; x++) {
+            addEntite(new Poutre(this), x,19);
+        }
+
+        // Cordes
+        for (int y = 3; y < 7; y++) {
+            addEntite(new Corde(this), 16, y);
+            addEntite(new Corde(this), 20, y);
+            addEntite(new Corde(this), 26, y);
+            addEntite(new Corde(this), 11, y+3);
+            addEntite(new Corde(this), 21, y+3);
+            addEntite(new Corde(this), 24, y+3);
+            addEntite(new Corde(this), 30, y+23);
+        }
+        for (int y = 18; y < 24; y++) {
+            addEntite(new Corde(this), 10, y);
+        }
+        for (int y = 3; y < 10; y++) {
+            addEntite(new Corde(this), 5, y);
+            addEntite(new Corde(this), 18, y+6);
+        }
+        for (int y = 15; y < 23; y++) {
+            addEntite(new Corde(this), 23, y);
+            addEntite(new Corde(this), 19, y+7);
+        }
+        for (int y = 3; y < 16; y++) {
+            addEntite(new Corde(this), 28, y);
+        }
+
+
+
+
+
+        /*
         addEntite(new Mur(this), 2, 6);
         addEntite(new Mur(this), 3, 6);
         addEntite(new Bot(this), 10, 6);
@@ -74,6 +189,7 @@ public class Jeu {
         for (int i = SIZE_Y - 1; i >8; i--) {
             addEntite(new Colonne(this), 5, i);
         }
+         */
 
     }
 
