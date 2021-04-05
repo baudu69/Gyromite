@@ -55,7 +55,7 @@ public class Jeu {
         hector = new Heros(this);
         hector.x=5;
         hector.y=9;
-        addEntite(hector, 5, 9);
+        addEntite(hector, hector.x, hector.y);
 
         g = new Gravite();
         g.addEntiteDynamique(hector);
@@ -163,42 +163,29 @@ public class Jeu {
 
         // Cordes
         for (int y = 3; y < 7; y++) {
-            addEntite(new Corde(this), 16, y);
-            addEntite(new Corde(this), 20, y);
-            addEntite(new Corde(this), 26, y);
-            addEntite(new Corde(this), 11, y+3);
-            addEntite(new Corde(this), 21, y+3);
-            addEntite(new Corde(this), 24, y+3);
-            addEntite(new Corde(this), 30, y+23);
+            addEntiteDynamique(new Corde(this), 16, y);
+            addEntiteDynamique(new Corde(this), 20, y);
+            addEntiteDynamique(new Corde(this), 26, y);
+            addEntiteDynamique(new Corde(this), 11, y+3);
+            addEntiteDynamique(new Corde(this), 21, y+3);
+            addEntiteDynamique(new Corde(this), 24, y+3);
+            addEntiteDynamique(new Corde(this), 30, y+23);
         }
         for (int y = 18; y < 24; y++) {
-            addEntite(new Corde(this), 10, y);
+            addEntiteDynamique(new Corde(this), 10, y);
         }
         for (int y = 3; y < 10; y++) {
-            addEntite(new Corde(this), 5, y);
-            addEntite(new Corde(this), 18, y+6);
+            addEntiteDynamique(new Corde(this), 5, y);
+            addEntiteDynamique(new Corde(this), 18, y+6);
         }
         for (int y = 15; y < 23; y++) {
-            addEntite(new Corde(this), 23, y);
-            addEntite(new Corde(this), 19, y+7);
+            addEntiteDynamique(new Corde(this), 23, y);
+            addEntiteDynamique(new Corde(this), 19, y+7);
         }
         for (int y = 3; y < 16; y++) {
-            addEntite(new Corde(this), 28, y);
+            addEntiteDynamique(new Corde(this), 28, y);
         }
 
-
-
-
-
-        /*
-        addEntite(new Mur(this), 2, 6);
-        addEntite(new Mur(this), 3, 6);
-        addEntiteDynamique(new Bot(this), 10, 6);
-
-        for (int i = SIZE_Y - 1; i >8; i--) {
-            addEntiteDynamique(new Corde(this), 5, i);
-        }
-         */
 
     }
 

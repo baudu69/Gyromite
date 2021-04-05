@@ -23,14 +23,7 @@ public class Controle4Directions extends RealisateurDeDeplacement{
 
     private void checkHeroCorde(EntiteDynamique e) {
         if (e instanceof Heros) {
-            if (e.jeu.getGrilleEntitesDynamique()[e.x][e.y] instanceof Corde) {
-                //e.jeu.g.delEntiteDyn(e);
-                ((Heros) e).laGravite = false;
-            } else {
-                ((Heros) e).laGravite = true;
-                /*if (!e.jeu.g.lstEntitesDynamiques.contains(e))
-                    e.jeu.g.addEntiteDynamique(e);*/
-            }
+            ((Heros) e).laGravite = (e.jeu.getGrilleEntitesDynamique()[e.x][e.y] == null) || (!(e.jeu.getGrilleEntitesDynamique()[e.x][e.y] instanceof Corde));
         }
     }
 

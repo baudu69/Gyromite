@@ -90,7 +90,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
     private void placerLesComposantsGraphiques() {
         setTitle("Gyromite");
-        setSize(900, 900);
+        setSize(576, 576);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // permet de terminer l'application à la fermeture de la fenêtre
 
         JComponent grilleJLabels = new JPanel(new GridLayout(sizeY, sizeX)); // grilleJLabels va contenir les cases graphiques et les positionner sous la forme d'une grille
@@ -127,27 +127,36 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
         for (int x = 0; x < sizeX; x++) {
             for (int y = 0; y < sizeY; y++) {
-                if (jeu.getGrille()[x][y] instanceof Heros) { // si la grille du modèle contient un Pacman, on associe l'icône Pacman du côté de la vue
-                    // System.out.println("Héros !");
-                    tabJLabel[x][y].setIcon(icoHero);
-                } else if (jeu.getGrille()[x][y] instanceof Mur) {
-                    tabJLabel[x][y].setIcon(icoMur);
-                } else if (jeu.getGrille()[x][y] instanceof Colonne) {
-                    tabJLabel[x][y].setIcon(icoColonne);
-                } else if (jeu.getGrille()[x][y] instanceof Corde) {
-                    tabJLabel[x][y].setIcon(icoCorde);
+                majCoordEntite(x, y);
+                if (jeu.getGrilleEntitesDynamique()[x][y] == null) {
+                    if (jeu.getGrille()[x][y] instanceof Heros) { // si la grille du modèle contient un Pacman, on associe l'icône Pacman du côté de la vue
+                        // System.out.println("Héros !");
+                        tabJLabel[x][y].setIcon(icoHero);
+                    } else if (jeu.getGrille()[x][y] instanceof Mur) {
+                        tabJLabel[x][y].setIcon(icoMur);
+                    } else if (jeu.getGrille()[x][y] instanceof Colonne) {
+                        tabJLabel[x][y].setIcon(icoColonne);
+                    }
+                    else if (jeu.getGrille()[x][y] instanceof Poutre) {
+                        tabJLabel[x][y].setIcon(icoPoutre);
+                    }
+                    else if (jeu.getGrille()[x][y] instanceof Sol) {
+                        tabJLabel[x][y].setIcon(icoSol);
+                    }
+                    else if (jeu.getGrille()[x][y] instanceof Bot) {
+                        tabJLabel[x][y].setIcon(icoMonstre);
+                    }else {
+                        tabJLabel[x][y].setIcon(icoVide);
+                    }
+                } else {
+                    if ((jeu.getGrilleEntitesDynamique()[x][y] instanceof Corde) && !(jeu.getGrille()[x][y] instanceof Heros)) {
+                        tabJLabel[x][y].setIcon(icoCorde);
+                    } else {
+                        tabJLabel[x][y].setIcon(icoHero);
+                    }
+
                 }
-                else if (jeu.getGrille()[x][y] instanceof Poutre) {
-                    tabJLabel[x][y].setIcon(icoPoutre);
-                }
-                else if (jeu.getGrille()[x][y] instanceof Sol) {
-                    tabJLabel[x][y].setIcon(icoSol);
-                }
-                else if (jeu.getGrille()[x][y] instanceof Bot) {
-                    tabJLabel[x][y].setIcon(icoMonstre);
-                }else {
-                    tabJLabel[x][y].setIcon(icoVide);
-                }
+
             }
         }
     }
