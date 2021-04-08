@@ -185,9 +185,17 @@ public class Jeu {
         for (int y = 3; y < 16; y++) {
             addEntiteDynamique(new Corde(this), 28, y);
         }
+        //Dynamite
+        addEntiteDynamique(new Dynamite(this), 2,24);
+        addEntiteDynamique(new Dynamite(this), 22,29);
+        addEntiteDynamique(new Dynamite(this), 9,18);
+        addEntiteDynamique(new Dynamite(this), 30,15);
+        addEntiteDynamique(new Dynamite(this), 3,3);
+
+
+
+        //bot
         addEntite(new Bot(this), 14, 18);
-
-
         addEntite(new Bot(this), 12,23);
 
 
@@ -205,6 +213,13 @@ public class Jeu {
     private void addEntiteDynamique(Entite e, int x, int y) {
         grilleEntitesDynamique[x][y] = e;
         map.put(e, new Point(x, y));
+    }
+
+    private void addTuyau(int x, int y,char c, char d) {
+        Tuyau t = new Tuyau(this);
+        t.setCouleur(c);
+        t.setPosition(d);
+        addEntiteDynamique(t, x, y);
     }
 
     /** Permet par exemple a une entité  de percevoir sont environnement proche et de définir sa stratégie de déplacement
