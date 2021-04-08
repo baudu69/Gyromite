@@ -198,7 +198,27 @@ public class Jeu {
         addEntite(new Bot(this), 14, 18);
         addEntite(new Bot(this), 12,23);
 
-        Tuyau t = new Tuyau(this, 2, 2, 'd', 'd', 4);
+        new Tuyau(this, 7, 2, 'r', 'h', 3);
+        new Tuyau(this, 8, 4, 'r', 'b', 3);
+        new Tuyau(this, 7, 8, 'r', 'h', 3);
+        new Tuyau(this, 9, 8, 'b', 'h', 3);
+        new Tuyau(this, 14, 7, 'r', 'b', 3);
+        new Tuyau(this, 13, 7, 'r', 'b', 3);
+        new Tuyau(this, 4, 12, 'r', 'h', 3);
+        new Tuyau(this, 8, 12, 'b', 'h', 3);
+        new Tuyau(this, 13, 16, 'b', 'b', 3);
+        new Tuyau(this, 14, 14, 'r', 'h', 3);
+        new Tuyau(this, 15, 14, 'b', 'h', 3);
+        new Tuyau(this, 16, 16, 'r', 'b', 3);
+        new Tuyau(this, 26, 16, 'r', 'b', 3);
+        new Tuyau(this, 29, 16, 'b', 'b', 3);
+        new Tuyau(this, 6, 27, 'r', 'b', 3);
+        new Tuyau(this, 12, 27, 'b', 'b', 3);
+        new Tuyau(this, 13, 25, 'r', 'h', 3);
+        new Tuyau(this, 24, 25, 'b', 'h', 3);
+
+
+
 
     }
 

@@ -14,11 +14,13 @@ public class Tuyau{
     private int y;
     private int taille;
 
-    public Tuyau(Jeu _jeu, int x, int y, char c, char d, int taille) {
+    public Tuyau(Jeu _jeu, int x, int y, char c, char p, int taille) {
         jeu = _jeu;
         this.x = x;
         this.y = y;
         this.taille = taille;
+        this.couleur = c;
+        this.position = p;
         lesMorceaux = new ArrayList<>();
         genererMorceaux();
     }
@@ -26,6 +28,8 @@ public class Tuyau{
     private void genererMorceaux() {
         for (int i = 0; i < taille; i++) {
             TuyauMorceau unMorceau = new TuyauMorceau(jeu);
+            unMorceau.setCouleur(this.getCouleur());
+            unMorceau.setPosition(this.getPosition());
             jeu.addEntiteDynamique(unMorceau, x, y + i);
             lesMorceaux.add(unMorceau);
         }

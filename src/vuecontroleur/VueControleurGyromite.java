@@ -29,7 +29,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private ImageIcon icoHerog;
     private ImageIcon icoVide;
     private ImageIcon icoMur;
-    private ImageIcon icoColonne;
+    private ImageIcon icoTuyaur;
+    private ImageIcon icoTuyaub;
     private ImageIcon icoCorde;
     private ImageIcon icoPoutre;
     private ImageIcon icoMonstred;
@@ -70,7 +71,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
         icoHerod = chargerIcone("Images/Playerd.png");
         icoHerog = chargerIcone("Images/Playerg.png");
         icoVide = chargerIcone("Images/Vide.png");
-        icoColonne = chargerIcone("Images/Colonne.png");
+        icoTuyaur = chargerIcone("Images/TuyauxRouge.png");
+        icoTuyaub = chargerIcone("Images/TuyauxBleu.png");
         icoMur = chargerIcone("Images/PoutreV.png");
         icoPoutre = chargerIcone("Images/PoutreH.png");
         icoCorde = chargerIcone("Images/Corde.png");
@@ -149,7 +151,9 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     }else if (jeu.getGrilleEntitesDynamique()[x][y] instanceof Dynamite) {
                         tabJLabel[x][y].setIcon(icoDynamite);
                     }else if (jeu.getGrilleEntitesDynamique()[x][y] instanceof TuyauMorceau) {
-                        tabJLabel[x][y].setIcon(icoColonne);
+                        if (((TuyauMorceau) jeu.getGrilleEntitesDynamique()[x][y]).getCouleur()=='r')
+                        tabJLabel[x][y].setIcon(icoTuyaur);
+                        else tabJLabel[x][y].setIcon(icoTuyaub);
                     }
                     else if (jeu.getGrille()[x][y] instanceof Poutre) {
                         tabJLabel[x][y].setIcon(icoPoutre);
@@ -165,7 +169,9 @@ public class VueControleurGyromite extends JFrame implements Observer {
                         tabJLabel[x][y].setIcon(icoCorde);
                     }
                     else if (jeu.getGrilleEntitesDynamique()[x][y] instanceof TuyauMorceau) {
-                        tabJLabel[x][y].setIcon(icoColonne);
+                        if (((TuyauMorceau) jeu.getGrilleEntitesDynamique()[x][y]).getCouleur()=='r')
+                            tabJLabel[x][y].setIcon(icoTuyaur);
+                        else tabJLabel[x][y].setIcon(icoTuyaub);
                     } else if (jeu.getGrilleEntitesDynamique()[x][y] instanceof Dynamite)
                         tabJLabel[x][y].setIcon(icoDynamite);
                         else if (((Heros) jeu.getGrille()[x][y]).getDirection()=='d')
