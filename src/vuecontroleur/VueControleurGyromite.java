@@ -167,16 +167,22 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     }
 
                 } else {
-                    if ((jeu.getGrilleEntitesDynamique()[x][y] instanceof Corde) && !(jeu.getGrille()[x][y] instanceof Heros)) {
+                    if ((jeu.getGrilleEntitesDynamique()[x][y] instanceof Corde) && !(jeu.getGrille()[x][y] instanceof Heros) && !(jeu.getGrille()[x][y] instanceof Bot)) {
                         tabJLabel[x][y].setIcon(icoCorde);
+                    }
+                    else if ((jeu.getGrilleEntitesDynamique()[x][y] instanceof Corde) && !(jeu.getGrille()[x][y] instanceof Heros)) {
+                        tabJLabel[x][y].setIcon(icoMonstred);
                     }
                     else if (jeu.getGrilleEntitesDynamique()[x][y] instanceof TuyauMorceau) {
                         if (((TuyauMorceau) jeu.getGrilleEntitesDynamique()[x][y]).getCouleur()=='r')
                             tabJLabel[x][y].setIcon(icoTuyaur);
                         else tabJLabel[x][y].setIcon(icoTuyaub);
-                    } else if (jeu.getGrilleEntitesDynamique()[x][y] instanceof Dynamite)
+                    }
+                    else if (jeu.getGrilleEntitesDynamique()[x][y] instanceof Dynamite) {
                         tabJLabel[x][y].setIcon(icoDynamite);
+                    }
                         else tabJLabel[x][y].setIcon(icoHerot);
+
                 }
 
 

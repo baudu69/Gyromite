@@ -83,9 +83,7 @@ public class Jeu {
         }
 
         // Murs interieurs
-        for (int y = 19; y < 21; y++) {
-            addEntite(new Mur(this), 29, y);
-        }
+
         for (int y = 8; y < 11; y++) {
             addEntite(new Mur(this), 20, y);
             addEntite(new Mur(this), 25, y);
@@ -113,7 +111,7 @@ public class Jeu {
         addEntite(new Poutre(this), 8,10);
         addEntite(new Poutre(this), 12,16);
         addEntite(new Poutre(this), 30,16);
-        addEntite(new Poutre(this), 30,20);
+
 
         for (int x = 9; x < 11; x++) {
             addEntite(new Poutre(this), x,4);
@@ -141,7 +139,6 @@ public class Jeu {
         }
         for (int x = 6; x < 11; x++) {
             addEntite(new Poutre(this), x,7);
-            addEntite(new Poutre(this), x+18,19);
             addEntite(new Poutre(this), x-5,25);
             addEntite(new Poutre(this), x+1,27);
             addEntite(new Poutre(this), x+8,27);
@@ -150,6 +147,9 @@ public class Jeu {
         for (int x = 17; x < 23; x++) {
             addEntite(new Poutre(this), x,16);
             addEntite(new Poutre(this), x-7,24);
+        }
+        for (int x = 24; x < 31; x++) {
+            addEntite(new Poutre(this), x,19);
         }
         for (int x = 10; x < 18; x++) {
             addEntite(new Poutre(this), x,10);
@@ -197,6 +197,10 @@ public class Jeu {
         //bot
         addEntite(new Bot(this), 14, 18);
         addEntite(new Bot(this), 12,23);
+        addEntite(new Bot(this), 23,6);
+        addEntite(new Bot(this), 12,3);
+        addEntite(new Bot(this), 30,18);
+        addEntite(new Bot(this), 27,22);
 
         new Tuyau(this, 7, 2, 'r', 'h', 3);
         new Tuyau(this, 8, 4, 'r', 'b', 3);
