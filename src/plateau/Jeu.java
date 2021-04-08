@@ -53,7 +53,7 @@ public class Jeu {
 
     private void initialisationDesEntites() {
         hector = new Heros(this);
-        hector.x=5;
+        hector.x=8;
         hector.y=9;
         addEntite(hector, hector.x, hector.y);
 
@@ -202,7 +202,7 @@ public class Jeu {
         addEntite(new Bot(this), 30,18);
         addEntite(new Bot(this), 27,22);
 
-        new Tuyau(this, 7, 2, 'r', 'h', 3);
+        new plateau.Tuyau(this, 7, 2, 'r', 'h', 3);
         new Tuyau(this, 8, 4, 'r', 'b', 3);
         new Tuyau(this, 7, 8, 'r', 'h', 3);
         new Tuyau(this, 9, 8, 'b', 'h', 3);
@@ -220,6 +220,7 @@ public class Jeu {
         new Tuyau(this, 12, 27, 'b', 'b', 3);
         new Tuyau(this, 13, 25, 'r', 'h', 3);
         new Tuyau(this, 24, 25, 'b', 'h', 3);
+        ordonnanceur.add(deplacements.Tuyau.getDepTuyau());
 
 
 
@@ -329,7 +330,7 @@ public class Jeu {
         map.put(e, pCible);
     }
 
-    private void deplacerEntiteDynamique(Point pCourant, Point pCible, Entite e) {
+    public void deplacerEntiteDynamique(Point pCourant, Point pCible, Entite e) {
         grilleEntitesDynamique[pCourant.x][pCourant.y] = null;
         grilleEntitesDynamique[pCible.x][pCible.y] = e;
         map.put(e, pCible);

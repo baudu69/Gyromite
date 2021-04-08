@@ -5,7 +5,7 @@ import deplacements.Direction;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Tuyau{
+public class Tuyau {
     private char couleur;
     private char position;
     private ArrayList<TuyauMorceau> lesMorceaux;
@@ -22,29 +22,65 @@ public class Tuyau{
         this.couleur = c;
         this.position = p;
         lesMorceaux = new ArrayList<>();
+        ajouterAuDeps();
         genererMorceaux();
+
+    }
+
+    private void ajouterAuDeps() {
+        if (couleur == 'r') {
+            deplacements.Tuyau.getDepTuyau().addTuyauRouge(this);
+        } else {
+            deplacements.Tuyau.getDepTuyau().addTuyauBleu(this);
+        }
     }
 
     private void genererMorceaux() {
         for (int i = 0; i < taille; i++) {
-            TuyauMorceau unMorceau = new TuyauMorceau(jeu);
+            TuyauMorceau unMorceau = new TuyauMorceau(jeu, this);
             unMorceau.setCouleur(this.getCouleur());
             unMorceau.setPosition(this.getPosition());
             jeu.addEntiteDynamique(unMorceau, x, y + i);
+            deplacements.Tuyau.getDepTuyau().addEntiteDynamique(unMorceau);
             lesMorceaux.add(unMorceau);
         }
     }
 
-    private void monter() {
-        for (TuyauMorceau unMorceau: lesMorceaux) {
+    public void changerPosition() {
+        if (position == 'h') {
+            descendre();
+            position = 'b';
+        } else {
+            monter();
+            position = 'h';
+        }
+    }
+
+    private void descendre() {
+        for (int i = lesMorceaux.size() - 1; i >= 0; i--) {
+            TuyauMorceau unMorceau = lesMorceaux.get(i);
             Point pointActuel = new Point();
             pointActuel.x = unMorceau.x;
             pointActuel.y = unMorceau.y;
             Point pointCible = new Point();
             pointCible.x = unMorceau.x;
-            pointCible.y = unMorceau.y + 1;
+            pointCible.y = unMorceau.y + 2;
 
-            jeu.deplacerEntite(pointActuel, pointCible, unMorceau);
+            jeu.deplacerEntiteDynamique(pointActuel, pointCible, unMorceau);
+        }
+    }
+
+    private void monter() {
+        for (int i = 0; i < lesMorceaux.size(); i++) {
+            TuyauMorceau unMorceau = lesMorceaux.get(i);
+            Point pointActuel = new Point();
+            pointActuel.x = unMorceau.x;
+            pointActuel.y = unMorceau.y;
+            Point pointCible = new Point();
+            pointCible.x = unMorceau.x;
+            pointCible.y = unMorceau.y - 2;
+
+            jeu.deplacerEntiteDynamique(pointActuel, pointCible, unMorceau);
         }
     }
 

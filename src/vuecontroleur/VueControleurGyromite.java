@@ -2,6 +2,7 @@ package vuecontroleur;
 
 import deplacements.Controle4Directions;
 import deplacements.Direction;
+import deplacements.Tuyau;
 import plateau.*;
 
 import javax.imageio.ImageIO;
@@ -62,6 +63,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     case KeyEvent.VK_RIGHT -> Controle4Directions.getInstance().setDirectionCourante(Direction.droite);
                     case KeyEvent.VK_DOWN -> Controle4Directions.getInstance().setDirectionCourante(Direction.bas);
                     case KeyEvent.VK_UP -> Controle4Directions.getInstance().setDirectionCourante(Direction.haut);
+                    case KeyEvent.VK_P -> Tuyau.getDepTuyau().depTuyauBleu();
+                    case KeyEvent.VK_O -> Tuyau.getDepTuyau().depTuyauRouge();
                 }
             }
         });
