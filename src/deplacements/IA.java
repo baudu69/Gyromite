@@ -13,8 +13,10 @@ public class IA extends RealisateurDeDeplacement{
         for (Bot unBot : lesBots) {
             if (nbrDep<= 3) {
                 unBot.avancerDirectionChoisie(Direction.droite);
+                unBot.setDirection('d');
             } else {
                 unBot.avancerDirectionChoisie(Direction.gauche);
+                unBot.setDirection('g');
             }
             nbrDep++;
             if (nbrDep >=7)

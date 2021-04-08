@@ -24,13 +24,15 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private int sizeY;
 
     // icones affichées dans la grille
-    private ImageIcon icoHero;
+    private ImageIcon icoHerod;
+    private ImageIcon icoHerog;
     private ImageIcon icoVide;
     private ImageIcon icoMur;
     private ImageIcon icoColonne;
     private ImageIcon icoCorde;
     private ImageIcon icoPoutre;
-    private ImageIcon icoMonstre;
+    private ImageIcon icoMonstred;
+    private ImageIcon icoMonstreg;
     private ImageIcon icoSol;
 
 
@@ -64,13 +66,15 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
 
     private void chargerLesIcones() {
-        icoHero = chargerIcone("Images/Player.png");
+        icoHerod = chargerIcone("Images/Playerd.png");
+        icoHerog = chargerIcone("Images/Playerg.png");
         icoVide = chargerIcone("Images/Vide.png");
         icoColonne = chargerIcone("Images/Colonne.png");
         icoMur = chargerIcone("Images/PoutreV.png");
         icoPoutre = chargerIcone("Images/PoutreH.png");
         icoCorde = chargerIcone("Images/Corde.png");
-        icoMonstre = chargerIcone("Images/Corde.png");
+        icoMonstred = chargerIcone("Images/Furbyd.png");
+        icoMonstreg = chargerIcone("Images/Furbyg.png");
         icoSol = chargerIcone("Images/Sol.png");
 
     }
@@ -130,8 +134,14 @@ public class VueControleurGyromite extends JFrame implements Observer {
                 majCoordEntite(x, y);
                 if (jeu.getGrilleEntitesDynamique()[x][y] == null) {
                     if (jeu.getGrille()[x][y] instanceof Heros) { // si la grille du modèle contient un Pacman, on associe l'icône Pacman du côté de la vue
-                        // System.out.println("Héros !");
-                        tabJLabel[x][y].setIcon(icoHero);
+                        if (((Heros) jeu.getGrille()[x][y]).getDirection()=='d')
+                            tabJLabel[x][y].setIcon(icoHerod);
+                        else tabJLabel[x][y].setIcon(icoHerog);
+                    } else if (jeu.getGrille()[x][y] instanceof Bot) {
+                        if(((Bot) jeu.getGrille()[x][y]).getDirection()=='d')
+                            tabJLabel[x][y].setIcon(icoMonstred);
+                        else tabJLabel[x][y].setIcon(icoMonstreg);
+
                     } else if (jeu.getGrille()[x][y] instanceof Mur) {
                         tabJLabel[x][y].setIcon(icoMur);
                     } else if (jeu.getGrille()[x][y] instanceof Colonne) {
@@ -142,17 +152,16 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     }
                     else if (jeu.getGrille()[x][y] instanceof Sol) {
                         tabJLabel[x][y].setIcon(icoSol);
-                    }
-                    else if (jeu.getGrille()[x][y] instanceof Bot) {
-                        tabJLabel[x][y].setIcon(icoMonstre);
                     }else {
                         tabJLabel[x][y].setIcon(icoVide);
                     }
+
                 } else {
                     if ((jeu.getGrilleEntitesDynamique()[x][y] instanceof Corde) && !(jeu.getGrille()[x][y] instanceof Heros)) {
                         tabJLabel[x][y].setIcon(icoCorde);
                     } else {
-                        tabJLabel[x][y].setIcon(icoHero);
+
+                        tabJLabel[x][y].setIcon(icoHerod);
                     }
 
                 }

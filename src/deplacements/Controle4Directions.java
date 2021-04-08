@@ -34,7 +34,12 @@ public class Controle4Directions extends RealisateurDeDeplacement{
             if (directionCourante != null)
                 switch (directionCourante) {
                     case gauche:
+                        ((Heros) e).setDirection('g');
+                        if (e.avancerDirectionChoisie(directionCourante))
+                            ret = true;
+                        break;
                     case droite:
+                        ((Heros) e).setDirection('d');
                         if (e.avancerDirectionChoisie(directionCourante))
                             ret = true;
                         break;

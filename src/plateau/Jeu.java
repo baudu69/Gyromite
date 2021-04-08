@@ -186,6 +186,9 @@ public class Jeu {
             addEntiteDynamique(new Corde(this), 28, y);
         }
 
+        addEntite(new Bot(this), 12,23);
+
+
 
     }
 
