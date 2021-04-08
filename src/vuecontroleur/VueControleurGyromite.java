@@ -148,7 +148,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
                         tabJLabel[x][y].setIcon(icoMur);
                     }else if (jeu.getGrilleEntitesDynamique()[x][y] instanceof Dynamite) {
                         tabJLabel[x][y].setIcon(icoDynamite);
-                    } else if (jeu.getGrille()[x][y] instanceof Tuyau) {
+                    }else if (jeu.getGrilleEntitesDynamique()[x][y] instanceof TuyauMorceau) {
                         tabJLabel[x][y].setIcon(icoColonne);
                     }
                     else if (jeu.getGrille()[x][y] instanceof Poutre) {
@@ -163,16 +163,14 @@ public class VueControleurGyromite extends JFrame implements Observer {
                 } else {
                     if ((jeu.getGrilleEntitesDynamique()[x][y] instanceof Corde) && !(jeu.getGrille()[x][y] instanceof Heros)) {
                         tabJLabel[x][y].setIcon(icoCorde);
+                    }
+                    else if (jeu.getGrilleEntitesDynamique()[x][y] instanceof TuyauMorceau) {
+                        tabJLabel[x][y].setIcon(icoColonne);
                     } else if (jeu.getGrilleEntitesDynamique()[x][y] instanceof Dynamite)
                         tabJLabel[x][y].setIcon(icoDynamite);
                         else if (((Heros) jeu.getGrille()[x][y]).getDirection()=='d')
                             tabJLabel[x][y].setIcon(icoHerod);
                         else tabJLabel[x][y].setIcon(icoHerog);
-
-
-
-
-
                 }
 
 

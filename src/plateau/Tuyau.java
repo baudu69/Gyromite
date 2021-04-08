@@ -1,14 +1,48 @@
 package plateau;
 
-public class Tuyau extends EntiteDynamique{
-    public Tuyau(Jeu _jeu) { super(_jeu); }
+import deplacements.Direction;
 
+import java.awt.*;
+import java.util.ArrayList;
+
+public class Tuyau{
     private char couleur;
     private char position;
+    private ArrayList<TuyauMorceau> lesMorceaux;
+    protected Jeu jeu;
+    private int x;
+    private int y;
+    private int taille;
 
-    public boolean peutEtreEcrase() { return false; }
-    public boolean peutServirDeSupport() { return true; }
-    public boolean peutPermettreDeMonterDescendre() { return false; };
+    public Tuyau(Jeu _jeu, int x, int y, char c, char d, int taille) {
+        jeu = _jeu;
+        this.x = x;
+        this.y = y;
+        this.taille = taille;
+        lesMorceaux = new ArrayList<>();
+        genererMorceaux();
+    }
+
+    private void genererMorceaux() {
+        for (int i = 0; i < taille; i++) {
+            TuyauMorceau unMorceau = new TuyauMorceau(jeu);
+            jeu.addEntiteDynamique(unMorceau, x, y + i);
+            lesMorceaux.add(unMorceau);
+        }
+    }
+
+    private void monter() {
+        for (TuyauMorceau unMorceau: lesMorceaux) {
+            Point pointActuel = new Point();
+            pointActuel.x = unMorceau.x;
+            pointActuel.y = unMorceau.y;
+            Point pointCible = new Point();
+            pointCible.x = unMorceau.x;
+            pointCible.y = unMorceau.y + 1;
+
+            jeu.deplacerEntite(pointActuel, pointCible, unMorceau);
+        }
+    }
 
     public char getCouleur() {
         return couleur;
@@ -25,4 +59,6 @@ public class Tuyau extends EntiteDynamique{
     public void setPosition(char position) {
         this.position = position;
     }
+
+
 }
