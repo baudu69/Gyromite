@@ -53,7 +53,7 @@ public class Jeu {
 
     private void initialisationDesEntites() {
         hector = new Heros(this);
-        hector.x=8;
+        hector.x=5;
         hector.y=9;
         addEntite(hector, hector.x, hector.y);
 
@@ -92,7 +92,7 @@ public class Jeu {
         for (int y = 1; y < 5; y++) {
             addEntite(new Mur(this), 11, y);
             addEntite(new Mur(this), 23, y);
-            addEntite(new Mur(this), 19, y+3);
+            addEntite(new Mur(this), 18, y+3);
         }
         for (int y = 20; y < 25; y++) {
             addEntite(new Mur(this), 16, y);
@@ -164,7 +164,7 @@ public class Jeu {
         // Cordes
         for (int y = 3; y < 7; y++) {
             addEntiteDynamique(new Corde(this), 16, y);
-            addEntiteDynamique(new Corde(this), 20, y);
+            addEntiteDynamique(new Corde(this), 19, y);
             addEntiteDynamique(new Corde(this), 26, y);
             addEntiteDynamique(new Corde(this), 11, y+3);
             addEntiteDynamique(new Corde(this), 21, y+3);
