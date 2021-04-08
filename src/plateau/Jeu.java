@@ -201,8 +201,31 @@ public class Jeu {
 
     }
 
-    public void FinDuJeu() throws InterruptedException {
+    public void FinDuJeu() {
 
+    }
+
+    /**
+     * @param entite Entite dynamique ou non
+     */
+    public void removeEntite(Entite entite) {
+        if (entite instanceof EntiteDynamique) {
+            for (int i = 0; i < SIZE_X; i++) {
+                for (int j = 0; j < SIZE_Y; j++) {
+                    if (grilleEntitesDynamique[i][j] == entite) {
+                        grilleEntitesDynamique[i][j] = null;
+                    }
+                }
+            }
+        } else {
+            for (int i = 0; i < SIZE_X; i++) {
+                for (int j = 0; j < SIZE_Y; j++) {
+                    if (grilleEntites[i][j] == entite) {
+                        grilleEntites[i][j] = null;
+                    }
+                }
+            }
+        }
     }
 
     private void addEntite(Entite e, int x, int y) {

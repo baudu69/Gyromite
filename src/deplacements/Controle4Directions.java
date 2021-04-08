@@ -1,9 +1,6 @@
 package deplacements;
 
-import plateau.Corde;
-import plateau.Entite;
-import plateau.EntiteDynamique;
-import plateau.Heros;
+import plateau.*;
 
 public class Controle4Directions extends RealisateurDeDeplacement{
     private Direction directionCourante;
@@ -59,10 +56,27 @@ public class Controle4Directions extends RealisateurDeDeplacement{
                         }
                         break;
                 }
+            checkDynamiteHero(e);
         }
 
         return ret;
 
+    }
+
+    private void checkDynamiteHero(Entite entite) {
+        if (entite instanceof Heros) {
+            for (int i = 0; i < Jeu.SIZE_X; i++) {
+                for (int j = 0; j < Jeu.SIZE_Y; j++) {
+                    Entite entPlateau = entite.jeu.getGrilleEntitesDynamique()[i][j];
+                    if (entPlateau instanceof Dynamite) {
+                        if ((entite.x == i) && (entite.y == j)) {
+                            entite.jeu.removeEntite(entPlateau);
+                            System.out.println("Dynamite touchée");
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void resetDirection() {
