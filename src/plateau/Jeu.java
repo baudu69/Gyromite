@@ -343,6 +343,11 @@ public class Jeu {
         if (contenuDansGrille(p)) {
             retour = grilleEntites[p.x][p.y];
         }
+        if (retour == null) {
+            if (grilleEntitesDynamique[p.x][p.y] instanceof TuyauMorceau) {
+                retour = grilleEntitesDynamique[p.x][p.y];
+            }
+        }
 
         return retour;
     }
