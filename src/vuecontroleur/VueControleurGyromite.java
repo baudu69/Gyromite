@@ -27,6 +27,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private ImageIcon icoDynamite;
     private ImageIcon icoHerod;
     private ImageIcon icoHerog;
+    private ImageIcon icoHerot;
     private ImageIcon icoVide;
     private ImageIcon icoMur;
     private ImageIcon icoTuyaur;
@@ -70,6 +71,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private void chargerLesIcones() {
         icoHerod = chargerIcone("Images/Playerd.png");
         icoHerog = chargerIcone("Images/Playerg.png");
+        icoHerot = chargerIcone("Images/Playert.png");
         icoVide = chargerIcone("Images/Vide.png");
         icoTuyaur = chargerIcone("Images/TuyauxRouge.png");
         icoTuyaub = chargerIcone("Images/TuyauxBleu.png");
@@ -174,9 +176,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
                         else tabJLabel[x][y].setIcon(icoTuyaub);
                     } else if (jeu.getGrilleEntitesDynamique()[x][y] instanceof Dynamite)
                         tabJLabel[x][y].setIcon(icoDynamite);
-                        else if (((Heros) jeu.getGrille()[x][y]).getDirection()=='d')
-                            tabJLabel[x][y].setIcon(icoHerod);
-                        else tabJLabel[x][y].setIcon(icoHerog);
+                        else tabJLabel[x][y].setIcon(icoHerot);
                 }
 
 
