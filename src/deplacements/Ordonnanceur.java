@@ -11,6 +11,7 @@ public class Ordonnanceur extends Observable implements Runnable {
     private Jeu jeu;
     private ArrayList<RealisateurDeDeplacement> lstDeplacements = new ArrayList<RealisateurDeDeplacement>();
     private long pause;
+    public boolean stop = false;
     public void add(RealisateurDeDeplacement deplacement) {
         lstDeplacements.add(deplacement);
     }
@@ -26,9 +27,10 @@ public class Ordonnanceur extends Observable implements Runnable {
 
     @Override
     public void run() {
-        boolean update = false;
+        boolean update = true;
 
         while(true) {
+            if (stop) break;
             jeu.resetCmptDepl();
             for (RealisateurDeDeplacement d : lstDeplacements) {
                 if (d.realiserDeplacement())

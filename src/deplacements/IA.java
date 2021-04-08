@@ -1,7 +1,9 @@
 package deplacements;
 
 import plateau.Bot;
+import plateau.Entite;
 import plateau.EntiteDynamique;
+import plateau.Heros;
 
 import java.util.ArrayList;
 
@@ -12,10 +14,10 @@ public class IA extends RealisateurDeDeplacement{
         getListeBot();
         for (Bot unBot : lesBots) {
             if (nbrDep<= 3) {
-                unBot.avancerDirectionChoisie(Direction.droite);
+                checkHero(unBot, Direction.droite);
                 unBot.setDirection('d');
             } else {
-                unBot.avancerDirectionChoisie(Direction.gauche);
+                checkHero(unBot, Direction.gauche);
                 unBot.setDirection('g');
             }
             nbrDep++;
@@ -23,6 +25,15 @@ public class IA extends RealisateurDeDeplacement{
                 nbrDep=1;
         }
         return true;
+    }
+
+    private void checkHero(Bot unBot, Direction laDirection) {
+        Entite entite = unBot.regarderDansLaDirection(laDirection);
+        if (entite instanceof Heros) {
+            unBot.jeu.getOrdonnanceur().stop = true;
+            System.out.println("Héro touché");
+        }
+        unBot.avancerDirectionChoisie(laDirection);
     }
 
     private void getListeBot() {

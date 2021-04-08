@@ -44,6 +44,11 @@ public class Controle4Directions extends RealisateurDeDeplacement{
                             ret = true;
                         break;
 
+                    case bas:
+                        if (e instanceof Heros && !((Heros) e).laGravite)
+                            if (e.avancerDirectionChoisie(Direction.bas))
+                                ret = true;
+                            break;
                     case haut:
                         // on ne peut pas sauter sans prendre appui
                         // (attention, test d'appui réalisé à partir de la position courante, si la gravité à été appliquée, il ne s'agit pas de la position affichée, amélioration possible)

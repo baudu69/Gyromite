@@ -185,10 +185,15 @@ public class Jeu {
         for (int y = 3; y < 16; y++) {
             addEntiteDynamique(new Corde(this), 28, y);
         }
+        addEntite(new Bot(this), 14, 18);
+
 
         addEntite(new Bot(this), 12,23);
 
 
+    }
+
+    public void FinDuJeu() throws InterruptedException {
 
     }
 

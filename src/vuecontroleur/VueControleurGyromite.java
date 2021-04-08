@@ -24,6 +24,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private int sizeY;
 
     // icones affichées dans la grille
+    private ImageIcon icoDynamite;
     private ImageIcon icoHerod;
     private ImageIcon icoHerog;
     private ImageIcon icoVide;
@@ -76,6 +77,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
         icoMonstred = chargerIcone("Images/Furbyd.png");
         icoMonstreg = chargerIcone("Images/Furbyg.png");
         icoSol = chargerIcone("Images/Sol.png");
+        icoDynamite = chargerIcone("Images/Dynamite.png");
 
     }
 
@@ -144,6 +146,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
                     } else if (jeu.getGrille()[x][y] instanceof Mur) {
                         tabJLabel[x][y].setIcon(icoMur);
+                    }else if (jeu.getGrilleEntitesDynamique()[x][y] instanceof Dynamite) {
+                        tabJLabel[x][y].setIcon(icoDynamite);
                     } else if (jeu.getGrille()[x][y] instanceof Colonne) {
                         tabJLabel[x][y].setIcon(icoColonne);
                     }
@@ -152,7 +156,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     }
                     else if (jeu.getGrille()[x][y] instanceof Sol) {
                         tabJLabel[x][y].setIcon(icoSol);
-                    }else {
+                    } else {
                         tabJLabel[x][y].setIcon(icoVide);
                     }
 
