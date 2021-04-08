@@ -132,7 +132,7 @@ public class Jeu {
             addEntite(new Poutre(this), x-1,14);
             addEntite(new Poutre(this), x+3,14);
             addEntite(new Poutre(this), x+7,14);
-            addEntite(new Poutre(this), x+6,19);
+            addEntite(new Poutre(this), x+5,19);
             addEntite(new Poutre(this), x+19,27);
         }
         for (int x = 12; x < 16; x++) {
