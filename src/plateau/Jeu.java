@@ -59,8 +59,8 @@ public class Jeu {
      */
     private void initialisationDesEntites() {
         hector = new Heros(this);
-        hector.x=5;
-        hector.y=9;
+        hector.x=3;
+        hector.y=29;
         addEntite(hector, hector.x, hector.y);
 
         g = new Gravite();
