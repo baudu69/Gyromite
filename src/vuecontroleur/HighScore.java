@@ -55,7 +55,7 @@ public class HighScore {
         } else {
             taillemax = lesTemps.size();
         }
-        for (int i = 0; i <= taillemax; i++) {
+        for (int i = 0; i < taillemax; i++) {
             text = new JLabel(j + " : \n" + f.format(lesTemps.get(i)));
             constraint = new GridBagConstraints();
             constraint.gridx = 1;
