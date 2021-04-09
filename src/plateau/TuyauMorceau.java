@@ -6,7 +6,7 @@ public class TuyauMorceau extends EntiteDynamique{
 
     private char couleur;
     private char position;
-    private Tuyau leTuyau;
+    private final Tuyau leTuyau;
 
     public TuyauMorceau(Jeu _jeu, Tuyau leTuyau) {
         super(_jeu);
@@ -25,9 +25,6 @@ public class TuyauMorceau extends EntiteDynamique{
         this.couleur = couleur;
     }
 
-    public char getPosition() {
-        return position;
-    }
 
     public void setPosition(char position) {
         this.position = position;

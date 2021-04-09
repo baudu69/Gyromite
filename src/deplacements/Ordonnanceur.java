@@ -9,10 +9,11 @@ import java.util.Observable;
 import static java.lang.Thread.sleep;
 
 public class Ordonnanceur extends Observable implements Runnable {
-    private Jeu jeu;
-    private ArrayList<RealisateurDeDeplacement> lstDeplacements = new ArrayList<RealisateurDeDeplacement>();
+    private final Jeu jeu;
+    private final ArrayList<RealisateurDeDeplacement> lstDeplacements = new ArrayList<>();
     private long pause;
     public boolean stop = false;
+
     public void add(RealisateurDeDeplacement deplacement) {
         lstDeplacements.add(deplacement);
     }
@@ -51,6 +52,7 @@ public class Ordonnanceur extends Observable implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
             //Fin du jeu par les dynamites
             if (jeu.getLesDynamites().size() == 0) {
                 message="Félicitation les dynamites ont toutes été récupérés";

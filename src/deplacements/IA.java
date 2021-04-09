@@ -12,9 +12,16 @@ public class IA extends RealisateurDeDeplacement{
     private int nbrDep = 1;
     //Liste des bots
     private ArrayList<Bot> lesBots;
+
+
+    /**
+     * 3 pas d'un coté et 3 pas de l'autre
+     * @return true si il peut bouger
+     */
     protected boolean realiserDeplacement() {
-        getListeBot();
-        for (Bot unBot : lesBots) {
+        //getListeBot();
+        for (EntiteDynamique unEnt : lstEntitesDynamiques) {
+            Bot unBot = (Bot) unEnt;
             if (nbrDep<= 3) {
                 checkHero(unBot, Direction.droite);
                 unBot.setDirection('d');
@@ -29,21 +36,18 @@ public class IA extends RealisateurDeDeplacement{
         return true;
     }
 
+
+    /**
+     * Vérifie si le bot s'apprète à manger un héros
+     * @param unBot le Bot à checker
+     * @param laDirection Direction dans laquelle le bot pointe
+     */
     private void checkHero(Bot unBot, Direction laDirection) {
         Entite entite = unBot.regarderDansLaDirection(laDirection);
         if (entite instanceof Heros) {
             unBot.jeu.getOrdonnanceur().stop = true;
         }
         unBot.avancerDirectionChoisie(laDirection);
-    }
-
-    private void getListeBot() {
-        lesBots = new ArrayList<>();
-        for (EntiteDynamique e : lstEntitesDynamiques) {
-            if (e instanceof Bot) {
-                lesBots.add((Bot) e);
-            }
-        }
     }
 
 }

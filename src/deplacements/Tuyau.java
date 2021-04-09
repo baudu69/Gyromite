@@ -10,8 +10,9 @@ import java.util.ArrayList;
 public class Tuyau extends RealisateurDeDeplacement{
 
     private static Tuyau tuy;
-    private ArrayList<plateau.Tuyau> tuyauxRouges;
-    private ArrayList<plateau.Tuyau> tuyauxBleus;
+
+    private final ArrayList<plateau.Tuyau> tuyauxRouges;
+    private final ArrayList<plateau.Tuyau> tuyauxBleus;
 
     public Tuyau() {
         tuyauxRouges = new ArrayList<>();
@@ -32,6 +33,9 @@ public class Tuyau extends RealisateurDeDeplacement{
         this.tuyauxRouges.add(unTuyau);
     }
 
+    /**
+     * Déplace les tuyaux bleus dans le sens opposé
+     */
     public void depTuyauBleu() {
         for (plateau.Tuyau unTuyau: tuyauxBleus) {
             TuyauMorceau leBas = unTuyau.getTuyauBas();
@@ -41,6 +45,9 @@ public class Tuyau extends RealisateurDeDeplacement{
         }
     }
 
+    /**
+     * Déplace les tuyaux Rouges dans le sens opposé
+     */
     public void depTuyauRouge() {
         for (plateau.Tuyau unTuyau: tuyauxRouges) {
             TuyauMorceau leBas = unTuyau.getTuyauBas();
