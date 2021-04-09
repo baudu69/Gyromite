@@ -141,7 +141,59 @@ public class VueControleurGyromite extends JFrame implements Observer {
         for (int x = 0; x < sizeX; x++) {
             for (int y = 0; y < sizeY; y++) {
                 majCoordEntite(x, y);
-                if (jeu.getGrilleEntitesDynamique()[x][y] == null) {
+
+                //On regarde si c'est un héro
+                if (jeu.getGrille()[x][y] instanceof Heros) {
+                    if (jeu.getGrilleEntitesDynamique()[x][y] instanceof Corde)
+                        tabJLabel[x][y].setIcon(icoHerot);
+                    else if (((Heros) jeu.getGrille()[x][y]).getDirection()=='d')
+                        tabJLabel[x][y].setIcon(icoHerod);
+                    else tabJLabel[x][y].setIcon(icoHerog);
+                }
+
+                //On regarde si c'est une entité dynamique
+                else if (jeu.getGrilleEntitesDynamique()[x][y] != null) {
+                    if (jeu.getGrilleEntitesDynamique()[x][y] instanceof Corde)
+                        tabJLabel[x][y].setIcon(icoCorde);
+                    else if (jeu.getGrilleEntitesDynamique()[x][y] instanceof TuyauMorceau) {
+                        if (((TuyauMorceau) jeu.getGrilleEntitesDynamique()[x][y]).getCouleur()=='r')
+                            tabJLabel[x][y].setIcon(icoTuyaur);
+                        else
+                            tabJLabel[x][y].setIcon(icoTuyaub);
+                    }
+                    else if (jeu.getGrilleEntitesDynamique()[x][y] instanceof Dynamite) {
+                        tabJLabel[x][y].setIcon(icoDynamite);
+                    }
+
+                }
+
+                else if (jeu.getGrille()[x][y] != null) {
+                    if (jeu.getGrille()[x][y] instanceof Bot) {
+                        if(((Bot) jeu.getGrille()[x][y]).getDirection()=='d')
+                            tabJLabel[x][y].setIcon(icoMonstred);
+                        else
+                            tabJLabel[x][y].setIcon(icoMonstreg);
+                    }
+                    else if (jeu.getGrille()[x][y] instanceof Poutre) {
+                        tabJLabel[x][y].setIcon(icoPoutre);
+                    }
+                    else if (jeu.getGrille()[x][y] instanceof Sol) {
+                        tabJLabel[x][y].setIcon(icoSol);
+                    }
+                    else if (jeu.getGrille()[x][y] instanceof Mur) {
+                        tabJLabel[x][y].setIcon(icoMur);
+                    }
+                }
+
+                else {
+                    tabJLabel[x][y].setIcon(icoVide);
+                }
+
+
+
+
+
+                /*if (jeu.getGrilleEntitesDynamique()[x][y] == null) {
                     if (jeu.getGrille()[x][y] instanceof Heros) { // si la grille du modèle contient un Pacman, on associe l'icône Pacman du côté de la vue
                         if (((Heros) jeu.getGrille()[x][y]).getDirection()=='d')
                             tabJLabel[x][y].setIcon(icoHerod);
@@ -186,7 +238,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     }
                         else tabJLabel[x][y].setIcon(icoHerot);
 
-                }
+                }*/
 
 
             }
