@@ -151,6 +151,14 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     else tabJLabel[x][y].setIcon(icoHerog);
                 }
 
+                //On regarde si c'est un bot
+                else if (jeu.getGrille()[x][y] instanceof Bot) {
+                    if(((Bot) jeu.getGrille()[x][y]).getDirection()=='d')
+                        tabJLabel[x][y].setIcon(icoMonstred);
+                    else
+                        tabJLabel[x][y].setIcon(icoMonstreg);
+                }
+
                 //On regarde si c'est une entité dynamique
                 else if (jeu.getGrilleEntitesDynamique()[x][y] != null) {
                     if (jeu.getGrilleEntitesDynamique()[x][y] instanceof Corde)
@@ -167,14 +175,9 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
                 }
 
+                //On regarde si c'est une entité statique
                 else if (jeu.getGrille()[x][y] != null) {
-                    if (jeu.getGrille()[x][y] instanceof Bot) {
-                        if(((Bot) jeu.getGrille()[x][y]).getDirection()=='d')
-                            tabJLabel[x][y].setIcon(icoMonstred);
-                        else
-                            tabJLabel[x][y].setIcon(icoMonstreg);
-                    }
-                    else if (jeu.getGrille()[x][y] instanceof Poutre) {
+                    if (jeu.getGrille()[x][y] instanceof Poutre) {
                         tabJLabel[x][y].setIcon(icoPoutre);
                     }
                     else if (jeu.getGrille()[x][y] instanceof Sol) {
@@ -185,6 +188,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     }
                 }
 
+                //Sinon on met une icone vide
                 else {
                     tabJLabel[x][y].setIcon(icoVide);
                 }
