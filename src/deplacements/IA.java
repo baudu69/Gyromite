@@ -45,7 +45,7 @@ public class IA extends RealisateurDeDeplacement{
     private void checkHero(Bot unBot, Direction laDirection) {
         Entite entite = unBot.regarderDansLaDirection(laDirection);
         if (entite instanceof Heros) {
-            unBot.jeu.getOrdonnanceur().stop = true;
+            unBot.getJeu().getOrdonnanceur().stop = true;
         }
         unBot.avancerDirectionChoisie(laDirection);
     }

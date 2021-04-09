@@ -14,16 +14,16 @@ public class Jeu {
     public static final int SIZE_Y = 32;
 
     // compteur de déplacements horizontal et vertical (1 max par défaut, à chaque pas de temps)
-    private final HashMap<Entite, Integer> cmptDeplH = new HashMap<Entite, Integer>();
-    private final HashMap<Entite, Integer> cmptDeplV = new HashMap<Entite, Integer>();
+    private final HashMap<Entite, Integer> cmptDeplH = new HashMap<>();
+    private final HashMap<Entite, Integer> cmptDeplV = new HashMap<>();
 
     private Heros hector;
 
-    public Gravite g;
+    private Gravite g;
 
-    private ArrayList<Dynamite> lesDynamites = new ArrayList<>();
+    private final ArrayList<Dynamite> lesDynamites = new ArrayList<>();
 
-    private final HashMap<Entite, Point> map = new  HashMap<Entite, Point>(); // permet de récupérer la position d'une entité à partir de sa référence
+    private final HashMap<Entite, Point> map = new  HashMap<>(); // permet de récupérer la position d'une entité à partir de sa référence
     private final Entite[][] grilleEntites = new Entite[SIZE_X][SIZE_Y]; // permet de récupérer une entité à partir de ses coordonnées
     private final Entite[][] grilleEntitesDynamique = new Entite[SIZE_X][SIZE_Y]; // permet de récupérer une entité à partir de ses coordonnées
 
@@ -54,6 +54,9 @@ public class Jeu {
         return hector;
     }
 
+    /**
+     * Ajoute les entités au jeu
+     */
     private void initialisationDesEntites() {
         hector = new Heros(this);
         hector.x=5;
@@ -61,8 +64,8 @@ public class Jeu {
         addEntite(hector, hector.x, hector.y);
 
         g = new Gravite();
-        g.addEntiteDynamique(hector);
-        ordonnanceur.add(g);
+        getG().addEntiteDynamique(hector);
+        ordonnanceur.add(getG());
 
         Controle4Directions.getInstance().addEntiteDynamique(hector);
         ordonnanceur.add(Controle4Directions.getInstance());
@@ -242,9 +245,6 @@ public class Jeu {
 
     }
 
-    public void FinDuJeu() {
-
-    }
 
     /**
      * @param entite Entite dynamique ou non
@@ -269,11 +269,21 @@ public class Jeu {
         }
     }
 
+    /**
+     * @param e entité à ajouter
+     * @param x position x de l'entité
+     * @param y position y de l'entité
+     */
     public void addEntite(Entite e, int x, int y) {
         grilleEntites[x][y] = e;
         map.put(e, new Point(x, y));
     }
 
+    /**
+     * @param e entité dynamique à ajouter
+     * @param x position x de l'entité dynamique
+     * @param y position y de l'entité dynamique
+     */
     public void addEntiteDynamique(Entite e, int x, int y) {
         grilleEntitesDynamique[x][y] = e;
         map.put(e, new Point(x, y));
@@ -328,6 +338,11 @@ public class Jeu {
     }
 
 
+    /**
+     * @param pCourant Point actuel
+     * @param d Direction
+     * @return le point désigné
+     */
     private Point calculerPointCible(Point pCourant, Direction d) {
 
         return switch (d) {
@@ -335,16 +350,25 @@ public class Jeu {
             case bas -> new Point(pCourant.x, pCourant.y + 1);
             case gauche -> new Point(pCourant.x - 1, pCourant.y);
             case droite -> new Point(pCourant.x + 1, pCourant.y);
-            default -> null;
         };
     }
 
+    /**
+     * @param pCourant Point actuel de l'entité
+     * @param pCible Point cible de l'entité
+     * @param e Entité à déplacer
+     */
     public void deplacerEntite(Point pCourant, Point pCible, Entite e) {
         grilleEntites[pCourant.x][pCourant.y] = null;
         grilleEntites[pCible.x][pCible.y] = e;
         map.put(e, pCible);
     }
 
+    /**
+     * @param pCourant Point actuel de l'entité dynamique
+     * @param pCible Point cible de l'entité dynamique
+     * @param e Entité à déplacer dynamique
+     */
     public void deplacerEntiteDynamique(Point pCourant, Point pCible, Entite e) {
         grilleEntitesDynamique[pCourant.x][pCourant.y] = null;
         grilleEntitesDynamique[pCible.x][pCible.y] = e;
@@ -357,6 +381,10 @@ public class Jeu {
         return p.x >= 0 && p.x < SIZE_X && p.y >= 0 && p.y < SIZE_Y;
     }
 
+    /**
+     * @param p Position
+     * @return Renvoie l'objet statiaue a la position p, si il est null on essai de renvoyer un morceau de tuyau
+     */
     private Entite objetALaPosition(Point p) {
         Entite retour = null;
 
@@ -372,6 +400,10 @@ public class Jeu {
         return retour;
     }
 
+    /**
+     * @param p Position
+     * @return Renvoie l'objet dynamique a la position p
+     */
     private Entite objetDynamiqueALaPosition(Point p) {
         Entite retour = null;
 
@@ -382,11 +414,24 @@ public class Jeu {
         return retour;
     }
 
+    /**
+     * @return Récupère l'ordonnanceur
+     */
     public Ordonnanceur getOrdonnanceur() {
         return ordonnanceur;
     }
 
+    /**
+     * @return la liste des dynamites encore en jeux
+     */
     public ArrayList<Dynamite> getLesDynamites() {
         return lesDynamites;
+    }
+
+    /**
+     * @return la gravité
+     */
+    public Gravite getG() {
+        return g;
     }
 }

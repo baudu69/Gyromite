@@ -40,7 +40,7 @@ public class Tuyau extends RealisateurDeDeplacement{
         for (plateau.Tuyau unTuyau: tuyauxBleus) {
             TuyauMorceau leBas = unTuyau.getTuyauBas();
             if (leBas.regarderDansLaDirection(Direction.bas) instanceof Bot)
-                leBas.jeu.removeEntite(leBas);
+                leBas.getJeu().removeEntite(leBas);
             unTuyau.changerPosition();
         }
     }
@@ -52,9 +52,9 @@ public class Tuyau extends RealisateurDeDeplacement{
         for (plateau.Tuyau unTuyau: tuyauxRouges) {
             TuyauMorceau leBas = unTuyau.getTuyauBas();
             if (leBas.regarderDansLaDirection(Direction.bas) instanceof Bot)
-                leBas.jeu.removeEntite(leBas);
+                leBas.getJeu().removeEntite(leBas);
             if (leBas.regarderDansLaDirection(Direction.bas) instanceof Heros)
-                leBas.jeu.getOrdonnanceur().stop = true;
+                leBas.getJeu().getOrdonnanceur().stop = true;
             unTuyau.changerPosition();
         }
     }

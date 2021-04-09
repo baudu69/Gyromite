@@ -17,11 +17,11 @@ public class Bot extends EntiteDynamique{
     public Bot(Jeu _jeu) {
         super(_jeu);
         IA uneIA = new IA();
-        jeu.getOrdonnanceur().add(uneIA);
+        getJeu().getOrdonnanceur().add(uneIA);
         uneIA.addEntiteDynamique(this);
 
         Gravite laGravite = new Gravite();
-        jeu.getOrdonnanceur().add(laGravite);
+        getJeu().getOrdonnanceur().add(laGravite);
         laGravite.addEntiteDynamique(this);
 
     }

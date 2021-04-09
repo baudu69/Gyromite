@@ -24,7 +24,7 @@ public class Controle4Directions extends RealisateurDeDeplacement{
      */
     private void checkHeroCorde(EntiteDynamique e) {
         if (e instanceof Heros) {
-            ((Heros) e).laGravite = (e.jeu.getGrilleEntitesDynamique()[e.x][e.y] == null) || (!(e.jeu.getGrilleEntitesDynamique()[e.x][e.y] instanceof Corde));
+            ((Heros) e).laGravite = (e.getJeu().getGrilleEntitesDynamique()[e.x][e.y] == null) || (!(e.getJeu().getGrilleEntitesDynamique()[e.x][e.y] instanceof Corde));
         }
     }
 
@@ -80,11 +80,11 @@ public class Controle4Directions extends RealisateurDeDeplacement{
         if (entite instanceof Heros) {
             for (int i = 0; i < Jeu.SIZE_X; i++) {
                 for (int j = 0; j < Jeu.SIZE_Y; j++) {
-                    Entite entPlateau = entite.jeu.getGrilleEntitesDynamique()[i][j];
+                    Entite entPlateau = entite.getJeu().getGrilleEntitesDynamique()[i][j];
                     if (entPlateau instanceof Dynamite) {
                         if ((entite.x == i) && (entite.y == j)) {
-                            entite.jeu.removeEntite(entPlateau);
-                            entite.jeu.getLesDynamites().remove(entPlateau);
+                            entite.getJeu().removeEntite(entPlateau);
+                            entite.getJeu().getLesDynamites().remove(entPlateau);
                             System.out.println("Dynamite touchée");
                         }
                     }
