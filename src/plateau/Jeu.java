@@ -6,6 +6,7 @@ import deplacements.Gravite;
 import deplacements.Ordonnanceur;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Jeu {
@@ -19,6 +20,8 @@ public class Jeu {
     private Heros hector;
 
     public Gravite g;
+
+    private ArrayList<Dynamite> lesDynamites = new ArrayList<>();
 
     private final HashMap<Entite, Point> map = new  HashMap<Entite, Point>(); // permet de récupérer la position d'une entité à partir de sa référence
     private final Entite[][] grilleEntites = new Entite[SIZE_X][SIZE_Y]; // permet de récupérer une entité à partir de ses coordonnées
@@ -185,12 +188,24 @@ public class Jeu {
         for (int y = 3; y < 16; y++) {
             addEntiteDynamique(new Corde(this), 28, y);
         }
+
         //Dynamite
-        addEntiteDynamique(new Dynamite(this), 2,24);
-        addEntiteDynamique(new Dynamite(this), 22,29);
-        addEntiteDynamique(new Dynamite(this), 9,18);
-        addEntiteDynamique(new Dynamite(this), 30,15);
-        addEntiteDynamique(new Dynamite(this), 3,3);
+        Dynamite laDynamite = new Dynamite(this);
+        addEntiteDynamique(laDynamite, 2,24);
+        getLesDynamites().add(laDynamite);
+
+        /*laDynamite = new Dynamite(this);
+        addEntiteDynamique(laDynamite, 22,29);
+        getLesDynamites().add(laDynamite);
+        laDynamite = new Dynamite(this);
+        addEntiteDynamique(laDynamite, 9,18);
+        getLesDynamites().add(laDynamite);
+        laDynamite = new Dynamite(this);
+        addEntiteDynamique(laDynamite, 30,15);
+        getLesDynamites().add(laDynamite);
+        laDynamite = new Dynamite(this);
+        addEntiteDynamique(laDynamite, 3,3);
+        getLesDynamites().add(laDynamite);*/
 
 
 
@@ -369,5 +384,9 @@ public class Jeu {
 
     public Ordonnanceur getOrdonnanceur() {
         return ordonnanceur;
+    }
+
+    public ArrayList<Dynamite> getLesDynamites() {
+        return lesDynamites;
     }
 }

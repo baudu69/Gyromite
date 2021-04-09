@@ -1,5 +1,6 @@
 package deplacements;
 
+import plateau.HighScore;
 import plateau.Jeu;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class Ordonnanceur extends Observable implements Runnable {
     public void add(RealisateurDeDeplacement deplacement) {
         lstDeplacements.add(deplacement);
     }
+    private String message = "Vous êtes morts";
 
     public Ordonnanceur(Jeu _jeu) {
         jeu = _jeu;
@@ -28,7 +30,7 @@ public class Ordonnanceur extends Observable implements Runnable {
     @Override
     public void run() {
         boolean update = true;
-
+        long tempsDebut = System.currentTimeMillis();
         while(true) {
             if (stop) break;
             jeu.resetCmptDepl();
@@ -49,7 +51,17 @@ public class Ordonnanceur extends Observable implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            //Fin du jeu par les dynamites
+            if (jeu.getLesDynamites().size() == 0) {
+                message="Félicitation les dynamites ont toutes été récupérés";
+                break;
+            }
         }
-
+        long tempsFin = System.currentTimeMillis();
+        if (message.equals("Félicitation les dynamites ont toutes été récupérés")) {
+            double seconds = (tempsFin - tempsDebut) / 1000F;
+            new HighScore(seconds);
+        }
+        javax.swing.JOptionPane.showMessageDialog(null,message);
     }
 }

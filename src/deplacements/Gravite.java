@@ -5,6 +5,10 @@ import plateau.EntiteDynamique;
 import plateau.Heros;
 
 public class Gravite extends RealisateurDeDeplacement{
+    /**
+     * Réalise l'action de gravité sur les entités dynamiques
+     * @return true si la gravité génère un déplacement
+     */
     @Override
     public boolean realiserDeplacement() {
         for (EntiteDynamique e : lstEntitesDynamiques) {

@@ -18,12 +18,21 @@ public class Controle4Directions extends RealisateurDeDeplacement{
         directionCourante = _directionCourante;
     }
 
+    /**
+     * Modifie le paramètre gravite du héro si il est sur une corde
+     * @param e Vérifie si le héro se trouve sur une corde ou non
+     */
     private void checkHeroCorde(EntiteDynamique e) {
         if (e instanceof Heros) {
             ((Heros) e).laGravite = (e.jeu.getGrilleEntitesDynamique()[e.x][e.y] == null) || (!(e.jeu.getGrilleEntitesDynamique()[e.x][e.y] instanceof Corde));
         }
     }
 
+    /**
+     * Permet de gérer le déplacement du héro.
+     * Gère aussi la gravité du héro
+     * @return true si le déplacement est possible
+     */
     public boolean realiserDeplacement() {
         boolean ret = false;
         for (EntiteDynamique e : lstEntitesDynamiques) {
@@ -63,6 +72,10 @@ public class Controle4Directions extends RealisateurDeDeplacement{
 
     }
 
+    /**
+     * Vérifie si le héro se trouve sur une dynamite et si oui la fait disparaitre
+     * @param entite héro
+     */
     private void checkDynamiteHero(Entite entite) {
         if (entite instanceof Heros) {
             for (int i = 0; i < Jeu.SIZE_X; i++) {
@@ -71,6 +84,7 @@ public class Controle4Directions extends RealisateurDeDeplacement{
                     if (entPlateau instanceof Dynamite) {
                         if ((entite.x == i) && (entite.y == j)) {
                             entite.jeu.removeEntite(entPlateau);
+                            entite.jeu.getLesDynamites().remove(entPlateau);
                             System.out.println("Dynamite touchée");
                         }
                     }

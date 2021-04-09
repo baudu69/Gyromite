@@ -35,6 +35,10 @@ public class Tuyau {
         }
     }
 
+    public TuyauMorceau getTuyauBas() {
+        return lesMorceaux.get(taille - 2);
+    }
+
     private void genererMorceaux() {
         for (int i = 0; i < taille; i++) {
             TuyauMorceau unMorceau = new TuyauMorceau(jeu, this);
@@ -99,6 +103,4 @@ public class Tuyau {
     public void setPosition(char position) {
         this.position = position;
     }
-
-
 }
