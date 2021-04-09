@@ -4,7 +4,6 @@ import plateau.Bot;
 import plateau.Heros;
 import plateau.TuyauMorceau;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Tuyau extends RealisateurDeDeplacement{
