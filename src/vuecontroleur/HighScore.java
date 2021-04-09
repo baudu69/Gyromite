@@ -1,4 +1,4 @@
-package plateau;
+package vuecontroleur;
 import javax.swing.*;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -51,11 +51,11 @@ public class HighScore {
         frame.add(text, constraint);
         int taillemax;
         if (lesTemps.size() >= 10) {
-            taillemax = lesTemps.size() - 10;
+            taillemax = 10;
         } else {
-            taillemax = 0;
+            taillemax = lesTemps.size();
         }
-        for (int i = lesTemps.size() - 1; i >= taillemax; i--) {
+        for (int i = 0; i <= taillemax; i++) {
             text = new JLabel(j + " : \n" + f.format(lesTemps.get(i)));
             constraint = new GridBagConstraints();
             constraint.gridx = 1;

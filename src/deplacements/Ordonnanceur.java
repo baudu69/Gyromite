@@ -1,6 +1,6 @@
 package deplacements;
 
-import plateau.HighScore;
+import vuecontroleur.HighScore;
 import plateau.Jeu;
 
 import java.util.ArrayList;

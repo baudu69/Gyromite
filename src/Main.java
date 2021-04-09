@@ -1,4 +1,3 @@
-import plateau.HighScore;
 import plateau.Jeu;
 import vuecontroleur.VueControleurGyromite;
 
