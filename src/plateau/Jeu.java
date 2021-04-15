@@ -200,7 +200,7 @@ public class Jeu {
         laDynamite = new Dynamite(this);
         addEntiteDynamique(laDynamite, 22,29);
         getLesDynamites().add(laDynamite);
-        /*laDynamite = new Dynamite(this);
+        laDynamite = new Dynamite(this);
         addEntiteDynamique(laDynamite, 9,18);
         getLesDynamites().add(laDynamite);
         laDynamite = new Dynamite(this);
@@ -208,7 +208,7 @@ public class Jeu {
         getLesDynamites().add(laDynamite);
         laDynamite = new Dynamite(this);
         addEntiteDynamique(laDynamite, 3,3);
-        getLesDynamites().add(laDynamite);*/
+        getLesDynamites().add(laDynamite);
 
 
 

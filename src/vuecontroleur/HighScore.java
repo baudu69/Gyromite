@@ -1,10 +1,6 @@
 package vuecontroleur;
 import javax.swing.*;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
+
 
 import java.awt.*;
 import java.io.FileInputStream;
@@ -14,7 +10,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-import java.util.concurrent.Flow;
+
 
 public class HighScore {
 

@@ -19,7 +19,6 @@ public class IA extends RealisateurDeDeplacement{
      * @return true si il peut bouger
      */
     protected boolean realiserDeplacement() {
-        //getListeBot();
         for (EntiteDynamique unEnt : lstEntitesDynamiques) {
             Bot unBot = (Bot) unEnt;
             if (nbrDep<= 3) {
